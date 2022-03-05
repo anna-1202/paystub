@@ -4,10 +4,11 @@ import java.util.Scanner;
 
 public class Menu {
     public static void showMenu() {
-        System.out.println("Enter 1 to show the list");
-        System.out.println("Enter 2 to add new data. Use 0 to stop entering info");
-        System.out.println("Enter 3 to delete data from the list");
-        System.out.println("Enter 4 to exit");
+        System.out.println("1 - Show the list");
+        System.out.println("2 - Add new data. Use 0 to stop entering info");
+        System.out.println("3 - Delete data from the list");
+        System.out.println("4 - Data Analyzer Menu");
+        System.out.println("5 Exit");
         System.out.println();
 
         int number = getInput();
@@ -34,12 +35,30 @@ public class Menu {
                 Main.deleteData();
                 break;
             case 4:
+                showAnalyzeMenu();
+                break;
+            case 5:
                 System.exit(0);
+                break;
+            case 6:
+                Main.showTotal(Main.readData());
+                break;
+            case 7:
+                showMenu();
                 break;
             default:
                 showMenu();
 
         }
 
+    }
+
+    private static void showAnalyzeMenu() {
+        System.out.println("6 - Total hours worked");
+        System.out.println("7 - Back to previous menu");
+        System.out.println();
+
+        int number = getInput();
+        runSelected(number);
     }
 }

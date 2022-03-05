@@ -3,12 +3,15 @@ package com.rubincomputers.paystub;
 import java.io.*;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 
 public class Main {
     public static void main(String[] args) {
+        showTotal(readData());
 
         while (true) {
             Menu.showMenu();
@@ -24,21 +27,24 @@ public class Main {
 
         while (true) {
 
-            System.out.println("enter start date: MONTH.DAY");
+            System.out.println("enter date: MONTH.DAY");
             dateEntered = keyboard.next();
             if (dateEntered.equals("0")) {
                 break;
             }
 
-            LocalDate startDate = stringToLocalDate(dateEntered);
+            LocalDate date = stringToLocalDate(dateEntered);
 
-            LocalDate endDate = startDate.plusDays(13);
+            System.out.println("You entered day: " + date);
 
-            System.out.println("Start date is: " + startDate + ". End date is: " + endDate);
-
-            System.out.println("Enter hours worked during this period:");
+            System.out.println("Enter hours, press enter and enter minutes and press enter.");
             int hours = keyboard.nextInt();
-            list.add(new Period(startDate, endDate, hours));
+            int minutes = keyboard.nextInt();
+
+            LocalTime time = LocalTime.of(hours, minutes);
+
+
+            list.add(new Period(date, time));
             saveData(list);
 
         }
@@ -96,7 +102,7 @@ public class Main {
      * @return all data from file
      */
     public static List<Period> readData() {
-        List<Period> list = null;
+        List<Period> list = new ArrayList<>();
         try {
             FileInputStream fis = new FileInputStream("database.bin");
             ObjectInputStream ois = new ObjectInputStream(fis);
@@ -133,7 +139,7 @@ public class Main {
                     System.out.print(i + ". ");
                 }
 
-                System.out.println(list.get(i).getStartDate() + " " + list.get(i).getEndDate() + " " + list.get(i).getHours());
+                System.out.println(list.get(i).getDate() + " " + list.get(i).getHours());
 
             }
 
@@ -152,12 +158,24 @@ public class Main {
 
     }
 
-    public static void showDataTable(List<Period> list ){
-        showData(list, false, true );
+    public static void showDataTable(List<Period> list) {
+        showData(list, false, true);
     }
 
-    public static void showDataLineIndex(List<Period> list ){
-        showData(list, true, false );
+    public static void showDataLineIndex(List<Period> list) {
+        showData(list, true, false);
     }
 
+    public static void showTotal(List<Period> list) {
+        LocalTime total = LocalTime.now();
+        System.out.println(total );
+        total = total.plusHours(3);
+        System.out.println(total );
+
+        for (int i = 0; i <list.size() ; i++) {
+
+            //total = total + list.get(i).getHours();
+
+        }
+    }
 }
