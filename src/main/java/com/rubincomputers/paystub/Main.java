@@ -2,8 +2,8 @@ package com.rubincomputers.paystub;
 
 import java.io.*;
 import java.time.DateTimeException;
+import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        showTotal(readData());
+
 
         while (true) {
             Menu.showMenu();
@@ -41,8 +41,7 @@ public class Main {
             int hours = keyboard.nextInt();
             int minutes = keyboard.nextInt();
 
-            LocalTime time = LocalTime.of(hours, minutes);
-
+            Duration time = Duration.ofHours(hours).plusMinutes(minutes);
 
             list.add(new Period(date, time));
             saveData(list);
@@ -139,7 +138,7 @@ public class Main {
                     System.out.print(i + ". ");
                 }
 
-                System.out.println(list.get(i).getDate() + " " + list.get(i).getHours());
+                System.out.println(list.get(i).getDate() + " " + list.get(i).getHours().toHoursPart() + ":" + list.get(i).getHours().toMinutesPart());
 
             }
 
@@ -167,15 +166,10 @@ public class Main {
     }
 
     public static void showTotal(List<Period> list) {
-        LocalTime total = LocalTime.now();
-        System.out.println(total );
-        total = total.plusHours(3);
-        System.out.println(total );
-
+        Duration total = Duration.ZERO;
         for (int i = 0; i <list.size() ; i++) {
-
-            //total = total + list.get(i).getHours();
-
+            total = total.plus(list.get(i).getHours());
         }
+        System.out.println("Total hours worked: " + total.toHours() +":" +total.toMinutesPart());
     }
 }
