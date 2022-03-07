@@ -16,14 +16,14 @@ public class Menu {
 
     }
 
-    public static int getInput(){
+    public static int getInput() {
         Scanner keyboard = new Scanner(System.in);
         int number = keyboard.nextInt();
         return number;
     }
 
-    public static void runSelected(int number){
-        switch (number){
+    public static void runSelected(int number) {
+        switch (number) {
             case 1:
                 Main.showDataTable(Main.readData());
 
@@ -44,6 +44,9 @@ public class Menu {
                 Main.showTotal(Main.readData());
                 break;
             case 7:
+                Main.monthlyGoal(Main.readData());
+                break;
+            case 8:
                 showMenu();
                 break;
             default:
@@ -54,8 +57,9 @@ public class Menu {
     }
 
     private static void showAnalyzeMenu() {
-        System.out.println("6 - Total hours worked");
-        System.out.println("7 - Back to previous menu");
+        System.out.println("6 - Yearly hours worked");
+        System.out.println("7 - Monthly hours worked");
+        System.out.println("8 - Back to previous menu");
         System.out.println();
 
         int number = getInput();

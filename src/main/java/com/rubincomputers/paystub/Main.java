@@ -4,20 +4,16 @@ import java.io.*;
 import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.time.Month;
+import java.util.*;
 
 
 public class Main {
     public static void main(String[] args) {
 
-
         while (true) {
             Menu.showMenu();
-
         }
-
     }
 
     public static void addData() {
@@ -138,10 +134,8 @@ public class Main {
                     System.out.print(i + ". ");
                 }
 
-                System.out.println(list.get(i).getDate() + " " + list.get(i).getHours().toHoursPart() + ":" + list.get(i).getHours().toMinutesPart());
-
+                System.out.println(list.get(i).getDate() + " " + list.get(i).getHours().toHours() + ":" + list.get(i).getHours().toMinutesPart());
             }
-
 
         } else {
             for (int i = 0; i < list.size(); i++) {
@@ -167,9 +161,31 @@ public class Main {
 
     public static void showTotal(List<Period> list) {
         Duration total = Duration.ZERO;
-        for (int i = 0; i <list.size() ; i++) {
+        for (int i = 0; i < list.size(); i++) {
             total = total.plus(list.get(i).getHours());
         }
-        System.out.println("Total hours worked: " + total.toHours() +":" +total.toMinutesPart());
+        System.out.println("Total hours worked: " + total.toHours() + ":" + total.toMinutesPart());
+    }
+
+    public static void monthlyGoal(List<Period> list) {
+        Duration monthlyGoal = Duration.ofHours(129);
+        Duration monthlySum = Duration.ZERO;
+
+        for (int j = 1; j <= Month.values().length; j++) {
+
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getDate().getMonth() == Month.of(j)) {
+                    monthlySum = monthlySum.plus(list.get(i).getHours());
+                }
+            }
+            if (monthlySum.toHours() != 0) {
+                Duration current = monthlyGoal.minus(monthlySum);
+                System.out.println(Month.of(j) + " " + monthlySum.toHours() + ":" + monthlySum.toMinutesPart()
+                + " Hours remained: " + (current.toHours() + ":" +current.toMinutesPart() ));
+            }
+            monthlySum = Duration.ZERO;
+        }
+
+        System.out.println();
     }
 }
