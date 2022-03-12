@@ -1,6 +1,7 @@
 package com.rubincomputers.paystub;
 
 import java.io.Serializable;
+import java.time.Duration;
 import java.time.LocalDate;
 
 public class Period implements Serializable {
@@ -8,32 +9,27 @@ public class Period implements Serializable {
 
     private static final long serialVersionUID = -8724124506895366897L;
 
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private int hours;
+    private LocalDate date;
+    private Duration hours;
 
-    public Period(LocalDate startDate, LocalDate endDate, int hours) {
-        this.startDate = startDate;
-        this.endDate = endDate;
+
+    public Period(LocalDate date, Duration hours) {
+        this.date = date;
         this.hours = hours;
 
     }
 
     public String toString() {
-        return "From: " + this.startDate + " " + "To: " + this.endDate + " Hours: " + this.hours;
+        return "Day: " + this.date + " " +  " Hours: " + this.hours;
 
 
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public int getHours() {
+    public Duration getHours() {
         return hours;
     }
 }
