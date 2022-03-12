@@ -25,14 +25,14 @@ public class Menu {
     public static void runSelected(int number) {
         switch (number) {
             case 1:
-                Main.showDataTable(Main.readData());
+                MainFunctions.showDataTable(MainFunctions.readData());
 
                 break;
             case 2:
-                Main.addData();
+                MainFunctions.addData();
                 break;
             case 3:
-                Main.deleteData();
+                MainFunctions.deleteData();
                 break;
             case 4:
                 showAnalyzeMenu();
@@ -41,10 +41,10 @@ public class Menu {
                 System.exit(0);
                 break;
             case 6:
-                Main.showTotal(Main.readData());
+                View.showTotal(MainFunctions.readData());
                 break;
             case 7:
-                Main.monthlyGoal(Main.readData());
+                View.monthlyGoal(MainFunctions.readData());
                 break;
             case 8:
                 showMenu();
