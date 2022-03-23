@@ -108,7 +108,7 @@ public class MainFunctions {
                     System.out.print(i + ". ");
                 }
 
-                System.out.println(list.get(i).getDate() + " " + View.durationToString(list.get(i).getHours()));
+                System.out.println(list.get(i).getDate() + " " + View.durationToString(list.get(i).getDuration()));
             }
 
         } else {

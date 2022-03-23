@@ -10,17 +10,17 @@ public class Period implements Serializable {
     private static final long serialVersionUID = -8724124506895366897L;
 
     private LocalDate date;
-    private Duration hours;
+    private Duration duration;
 
 
-    public Period(LocalDate date, Duration hours) {
+    public Period(LocalDate date, Duration duration) {
         this.date = date;
-        this.hours = hours;
+        this.duration = duration;
 
     }
 
     public String toString() {
-        return "Day: " + this.date + " " +  " Hours: " + this.hours;
+        return "Day: " + this.date + " " +  " Hours: " + this.duration;
 
 
     }
@@ -29,7 +29,11 @@ public class Period implements Serializable {
         return date;
     }
 
-    public Duration getHours() {
-        return hours;
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public String getHoursMinutes(){
+        return duration.toHours() + ":" + duration.toMinutesPart();
     }
 }

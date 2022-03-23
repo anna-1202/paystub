@@ -35,7 +35,7 @@ public class DeleteDataServlet extends HttpServlet {
                 "Delete the following:" + "<br>\n";
          for (int i = 0; i < list.size(); i++) {
             //s = s + list.get(i).toString()+ "<br>\n";
-            s = s + list.get(i).getDate() + " " + View.durationToString(list.get(i).getHours()) + "<a href=\"/deletedata?id="+ i+"\">  DELETE</a>"+"<br>\n";
+            s = s + list.get(i).getDate() + " " + View.durationToString(list.get(i).getDuration()) + "<a href=\"/deletedata?id="+ i+"\">  DELETE</a>"+"<br>\n";
         }
 
 

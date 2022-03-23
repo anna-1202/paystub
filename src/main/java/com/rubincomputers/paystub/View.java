@@ -28,7 +28,7 @@ public class View {
     public static void showTotal(List<Period> list) {
         Duration total = Duration.ZERO;
         for (int i = 0; i < list.size(); i++) {
-            total = total.plus(list.get(i).getHours());
+            total = total.plus(list.get(i).getDuration());
         }
         System.out.println("Total hours worked: " + durationToString(total));
     }
@@ -41,7 +41,7 @@ public class View {
 
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).getDate().getMonth() == Month.of(j)) {
-                    monthlySum = monthlySum.plus(list.get(i).getHours());
+                    monthlySum = monthlySum.plus(list.get(i).getDuration());
                 }
             }
             if (monthlySum.toHours() != 0) {

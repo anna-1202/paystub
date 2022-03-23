@@ -1,8 +1,5 @@
 package com.rubincomputers.paystub.servlet;
-
-
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
